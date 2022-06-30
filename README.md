@@ -1,7 +1,7 @@
 # CoRPG
 
-Code for paper [Document-Level Paraphrase Generation with Sentence Rewriting and Reordering](https://arxiv.org/abs/2109.07095) by Zhe Lin,
-Yitao Cai and Xiaojun Wan. This paper is accepted by Findings of EMNLP'21.
+Code for paper  [Document-level Paraphrase Generation Base on Attention Enhanced Graph LSTM]  by Dong Qiu,
+Lei Chen and Yang Yv.
 
 <img src="https://github.com/L-Zhe/CoRPG/blob/main/img/model.jpg?raw=true" width = "800" alt="overview" align=center />
 
