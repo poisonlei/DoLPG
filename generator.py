@@ -33,7 +33,6 @@ class generator:
 				if constants.EOS_index in output[i]:
 					end_index = output[i].index(constants.EOS_index)
 					output[i] = output[i][:end_index]
-		# print(len(output[i]))
 
 		except RuntimeError:
 			if ed - st == 1:
@@ -57,7 +56,6 @@ class generator:
 			self.source = source[0]
 			self.graph = graph[0]
 			outputs.extend(self._batch(0, self.source.size(0)))
-		# print(translate2word(outputs[-1:], self.index2word))
 		return translate2word(outputs, self.index2word)
 
 
@@ -69,21 +67,14 @@ def _main():
 	assert (args.file is None) ^ (args.raw_file is None)
 	_, tgt_index2word = load_vocab(args.vocab)
 	vocab_size = len(tgt_index2word)
-	print('vocab_size=', vocab_size)
 	setattr(args, 'vocab_size', vocab_size)
 
 	args.cuda_num = str(torch.cuda.current_device())
 	environ['CUDA_VISIBLE_DEVICES'] = args.cuda_num
-	print("start1")
 	model_state_dict = load_model(args.model_path)
-	print("end1")
-	# transformer实例化传参
-	print("start2")
 	model = make_model(args)
 	model.load_state_dict(model_state_dict)
 	model.cuda()
-	print("end2")
-	print("start3")
 	if args.file is not None:
 		with open(args.file, 'rb') as f:
 			data = pickle.load(f)
@@ -91,38 +82,21 @@ def _main():
 	else:
 		src_word2index, _ = load_vocab(args.src_vocab)
 		source = data_process(filelist=[args.raw_file], word2index=src_word2index)
-
 		data = data_loader(source=source, PAD_index=constants.PAD_index)
 
-	print("end3")
-	print("start4")
 	dataset, batch_size = data.set_param(False, args, False)
-	print("end4")
-	print("start5")
 	dataset = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=False, num_workers=0, pin_memory=True)
-	print("end5")
-	print("start6")
 	generate = generator(data=dataset, index2word=tgt_index2word, max_length=args.max_length, model=model)
-
-	print("end6")
-	print("start7")
 	outputs = generate()
-	print("end7")
 	outputs = data.restore_rank(outputs)
 	if not os.path.exists(args.output_path):
 		os.makedirs(args.output_path)
-	save_file = os.path.join(args.output_path, 'result5.txt')
-	# save_file = os.path.join(args.output_path, 'result10.txt')
-	print(save_file)
-	print("start8")
+	save_file = os.path.join(args.output_path, 'result.txt')
 	save2file(outputs, save_file)
-	print("end8")
 
-	print("start9")
 	if args.ref_file is not None:
 		eval = Eval(reference_file=args.ref_file)
 		eval(save_file)
-	print("end9")
 
 
 if __name__ == '__main__':

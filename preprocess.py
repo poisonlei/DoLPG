@@ -74,19 +74,12 @@ class data_loader:
 		self.process_flag = True
 
 	def _get_tokens(self, shuffle, args):
-		# train_flag 默认True
-		# shuffle 默认True
 		if self.train_flag:
-			# gram_penalty  默认[4, 2, 0, 0]
 			assert len(args.gram_penalty) == 4
-			# 平均惩罚值
 			self.penalty = avg_penalty(self.penalty, args.gram_penalty)
-		# process_flag  默认True
 		if self.process_flag:
 			if self.train_flag:
-				# 将source、graph、target_input、target_output、penalty打包成元组并构建成元组列表[(),(),()...]
 				data = list(zip(self.source, self.graph, self.target_input, self.target_output, self.penalty))
-				# 对元组进行排序
 				data_s = sort_data(data)
 				src_index, data = zip(*data_s)
 				self.source, self.graph, self.target_input, self.target_output, self.penalty = zip(*data)
@@ -99,7 +92,6 @@ class data_loader:
 		st = 0
 		total_len = len(self.source)
 		index_pair = []
-		# 输出每一对source和target的下标元组列表
 		while st < total_len:
 			if self.train_flag:
 				max_length = key_func([self.source[st], 0, self.target_input[st]])
@@ -128,8 +120,6 @@ class data_loader:
 							break
 					if flag:
 						total_cnt += 1
-			# graph += torch.eye(graph_size).view(1, graph_size, graph_size).long()
-			# graph = (graph != 0).long()
 			if self.train_flag:
 				target_output = LongTensor(pad_batch(self.target_output[st:ed], self.PAD_index, dim=2))
 				penalty = FloatTensor(self.penalty[st:ed])
@@ -162,7 +152,6 @@ class data_loader:
 			random.seed(seed)
 		if args.max_tokens is not None:
 			self.index = 0
-			# _get_tokens 是得到每批tokens的参数
 			return self._get_tokens(shuffle, args), 1
 		else:
 			self.st_index = 0
@@ -191,8 +180,6 @@ def save_data_loader(dataloader, save_file):
 
 
 def avg_penalty(penalty, val):
-	# val  默认[4, 2, 0, 0]
-	# penalty
 	for i in range(len(penalty[0])):
 		for j in range(len(penalty[0][0])):
 			tmp = 0
