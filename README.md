@@ -3,7 +3,7 @@
 Code for paper  [Document-level Paraphrase Generation Base on Attention Enhanced Graph LSTM]  by Dong Qiu,
 Lei Chen and Yang Yv.
 
-<img src="https://github.com/poisonlei/DoLPG/tree/main/img/PG.png?raw=true" width = "800" alt="overview" align=center />
+<img src="https://github.com/poisonlei/DoLPG/blob/main/img/PG.png?raw=true" width = "800" alt="overview" align=center />
 
 ## Datasets
 
