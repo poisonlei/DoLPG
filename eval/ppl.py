@@ -27,7 +27,7 @@ def get_parser():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--model_file', type=str, default='gpt2')
 	parser.add_argument('--cuda_num', type=str, default='0')
-	parser.add_argument('--file', type=str, default='../dataloads/generate/result10.txt')
+	parser.add_argument('--file', type=str, default='../data/generate/result.txt')
 	return parser.parse_args()
 
 

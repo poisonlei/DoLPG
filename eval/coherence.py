@@ -192,24 +192,18 @@ def get_parser():
 	parser.add_argument('--coh', action='store_true', default=False)
 	parser.add_argument('--pretrain_model', type=str, default='../albert/albert-base-v2')
 
-	# parser.add_argument('--save_file', type=str, default='../dataload/model/train5.pt')
-	# parser.add_argument('--save_file_graph', type=str, default='../dataload/graph/train5.graph')
-	# parser.add_argument('--text_file', type=str, default='../dataload/comb_5/train.pesu.comb')
+	# # train (If you want to run train, comment test and coh, uncomment train and train is set to True)
+	parser.add_argument('--save_file', type=str, default='../data/model/train.pt')
+	parser.add_argument('--save_file_graph', type=str, default='../data/graph/train.graph')
+	parser.add_argument('--text_file', type=str, default='../data/comb/train.pesu.comb')
 
-	# parser.add_argument('--save_file', type=str, default='../data/model/train10.pt')
-	# parser.add_argument('--save_file_graph', type=str, default='../data/graph/train10.graph')
-	# parser.add_argument('--text_file', type=str, default='../data/comb/train.pesu.comb')
+	# # test (If you want to run test, comment train and coh, uncomment test and test is set to True)
+	# parser.add_argument('--save_file', type=str, default='../data/model/test.pt')
+	# parser.add_argument('--save_file_graph', type=str, default='../data/graph/test.graph')
+	# parser.add_argument('--text_file', type=str, default='../data/comb/test.comb')
 
-	# parser.add_argument('--save_file', type=str, default='../dataloads/model/test5.pt')
-	# parser.add_argument('--save_file_graph', type=str, default='../dataloads/graph/test5.graph')
-	# parser.add_argument('--text_file', type=str, default='../dataloads/comb_5/test.comb')
-
-	parser.add_argument('--save_file', type=str, default='../data/model/test10.pt')
-	parser.add_argument('--save_file_graph', type=str, default='../data/graph/test10.graph')
-	parser.add_argument('--text_file', type=str, default='../data/comb/test.comb')
-
-	# parser.add_argument('--coh_file', type=str, default='../dataloads/generate/result10.txt')
-	# parser.add_argument('--coh_file', type=str, default='../all_system_output/tran_sent.txt')
+	# # coh (If you want to run coh, comment train and test, uncomment coh and coh is set to True)
+	# parser.add_argument('--coh_file', type=str, default='../data/generate/result.txt')
 	return parser.parse_args()
 
 
