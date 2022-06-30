@@ -11,9 +11,9 @@ from nltk.tokenize import sent_tokenize
 
 
 def split_sent(sent):
-	# 通过句子进行分割
 	ans = list(sent_tokenize(sent))
 	return ans
+
 
 def read(file, split=False):
 	with open(file, 'r', encoding='utf-8') as f:

@@ -22,6 +22,6 @@ def cal_bleu(ref_file, cand_file):
 
 
 if __name__ == '__main__':
-	ref_file = '../data/comb_5/test.comb'
-	cand_file = '../data/generate/result5.txt'
+	ref_file = '../data/comb/test.comb'
+	cand_file = '../data/generate/result.txt'
 	cal_bleu(ref_file, cand_file)
