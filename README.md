@@ -9,24 +9,18 @@ Lei Chen and Yang Yv.
 
 We leverage [ParaNMT](https://www.cs.cmu.edu/~jwieting/) to train a sentence-level paraphrasing model. We
 select [News-Commentary](http://www.statmt.org/wmt20/translation-task.html) as document corpora, and we employ sentence-level paraphrasing
-model to generate a pseudo document-level paraphrase and use ALBERT to generate its coherence relationship graph. All these data are
-released at [here](https://github.com/L-Zhe/CoPRG/data).
-
-## System Output
-
-If you are looking for system output and don't bother to install dependencies and train a model (or run a pre-trained model),
-the [all-system-output](https://github.com/L-Zhe/CoPRG/all-system-output) folder is for you.
+model to generate a pseudo document-level paraphrase and use ALBERT to generate its coherence relationship graph.
 
 ## Dependencies
 
 > PyTorch >= 1.4
->
+> 
 >Transformers == 4.1.1
->
+> 
 >nltk == 3.5
->
+> 
 >tqdm
->
+> 
 >torch_optimizer == 0.1.0
 
 ## Train a Document-Level Paraphrase Model
@@ -58,9 +52,6 @@ python eval/coherence.py --inference
 			 --pretrain_model [pretrain_model file]
 			 --text_file [generate the coherence relationship graph of this corpora]
 ```
-
-**NOTE：** Our code only supports to generate the paraphrasing of documents with 5 sentences. If you want to generate longer or variable
-length document paraphrase, you need to make some modifications to the code.
 
 ### Step2: Process dataset
 
